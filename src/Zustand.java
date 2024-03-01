@@ -3,8 +3,11 @@ public abstract class Zustand {
   public Zustand() {
   }
 
-  public List<Zustand> gibFolgezustaende0() {
-     return null;
+  public List<Zustand> gibFolgezustaendeA() {
+return null;
+  }
+  public List<Zustand> gibFolgezustaendeB() {
+    return null;
   }
 
   public List<Zustand> gibFolgezustaende1() {
