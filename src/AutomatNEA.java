@@ -4,6 +4,11 @@ public class AutomatNEA {
   private List<Zustand> aktiveZustaende;
   private List<Zustand> EndZustaende;
   private List<Zustand> speicher;
+  Q1 q0 = new Q1();
+
+  Q1 q1 = new Q1();
+  Q2 q2 = new Q2();
+
 
 
 
@@ -14,9 +19,7 @@ public class AutomatNEA {
 
   // Konstruktor
 
-  public AutomatNEA (String s) {
-    parseStrg = s;
-  }
+
 
   char cutFirst () {
     if (parseStrg.length() == 0)
@@ -38,14 +41,14 @@ public class AutomatNEA {
     
     public List<Zustand> gibFolgezustaendeA() {
       List<Zustand> liste = new List();
-       Q1 q1 = new Q1();
+       //Q1 q1 = new Q1();
         liste.append(q1);
       return liste;
     }
     public List<Zustand> gibFolgezustaendeB() {
       List<Zustand> speicher = new List();
-      Q1 q1 = new Q1();
-      Q2 q2 = new Q2();
+      //Q1 q1 = new Q1();
+      //Q2 q2 = new Q2();
 
       speicher.append(q1);
       speicher.append(q2);
@@ -68,7 +71,7 @@ public class AutomatNEA {
     }
     public List<Zustand> gibFolgezustaendeB() {
       List<Zustand> speicher = new List();
-      Q2 q2 = new Q2();
+      //Q2 q2 = new Q2();
 
       speicher.append(q2);
       return speicher;
@@ -89,7 +92,7 @@ public class AutomatNEA {
 
     public List<Zustand> gibFolgezustaendeA() {
       List<Zustand> speicher = new List();
-      Q1 q1 = new Q1();
+      //Q1 q1 = new Q1();
       speicher.append(q1);
       return speicher;
     }
@@ -106,12 +109,12 @@ public class AutomatNEA {
   
 
   
-  public void pruefeWort(String pWort) {
+  public void pruefeWort(String s){
+    parseStrg = s;
     aktiveZustaende = new List<>();
     speicher = new List<>();
 
     zeichen = cutFirst();
-    Q0 q0 = new Q0();
     aktiveZustaende.append(q0);
     aktiveZustaende.toFirst();
     while (zeichen != '$') {
@@ -130,16 +133,20 @@ public class AutomatNEA {
 
       aktiveZustaende = speicher;
       zeichen = cutFirst();
+      for(speicher.toFirst();speicher.hasAccess()==true;speicher.next()) {
+        speicher.remove();
+      }
     }
+    System.out.println(this.akzeptiert());
 
   }
 
-  public boolean akzeptiert() {
+  public String akzeptiert() {
     for(aktiveZustaende.toFirst();aktiveZustaende.hasAccess()==true;aktiveZustaende.next()) {
-    if (aktiveZustaende.getContent()
+    if (aktiveZustaende.getContent()==q0 || aktiveZustaende.getContent()==q1);
+    return "ja";
     }
-
-    return false;
+      return "nein";
   }
   
 }
